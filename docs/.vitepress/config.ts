@@ -1,6 +1,6 @@
 export default {
   lang: 'zh-CN',
-  title: 'jun.run',
+  title: '奔跑吧，俊！',
   description: 'A running Jun',
 
   themeConfig: {
@@ -48,8 +48,8 @@ function getJsSidebar() {
     {
       text: 'JavaScript',
       children: [
-        { text: 'ECharts配置', link: '/js/default'},
-        { text: '前端杂记', link: '/js/FE' },
+        { text: '前端知识', link: '/js/FE' },
+        { text: 'ECharts配置', link: '/js/echarts'},
         { text: '原型和原型链', link: '/js/prototype' },
         { text: '闭包', link: '/js/closure' },
         { text: '变量', link: '/js/variable' },

@@ -28,5 +28,5 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           source: "dist/*"
           target: "/www/wwwroot/jun.run"
-          strip_components: 1
+          strip_components: 0
           rm: "true"
