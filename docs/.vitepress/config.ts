@@ -53,9 +53,22 @@ function getJsSidebar() {
         { text: '原型和原型链', link: '/js/prototype' },
         { text: '闭包', link: '/js/closure' },
         { text: '变量', link: '/js/variable' },
-        // { text: '本年进步 🏃', link: '/guide/progress'},
-        // { text: '来年展望', link: '/guide/expectations'},
-        // { text: '致谢 🙏', link: '/guide/thanks' },
+      ]
+    },
+    {
+      text: '框架',
+      children: [
+        { text: 'MVVM', link: '/framework/mvvm'},
+        { text: '虚拟DOM', link: '/framework/vitual-dom' },
+        { text: '路由', link: '/framework/router' },
+      ]
+    },
+    {
+      text: '网络',
+      children: [
+        { text: '浏览器的渲染机制', link: '/network/rendering-principle'},
+        { text: '从输入 URL 到页面加载完成的过程', link: '/network/process-from-entering-URL-to-page-load-completion' },
+        { text: 'HTTP', link: '/network/http' },
       ]
     }
   ]
