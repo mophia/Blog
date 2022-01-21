@@ -23,20 +23,15 @@ export default {
     nav: [
       { text: 'JavaScript', link: '/', activeMatch: '^/$|^/js/' },
       {
-        text: 'ECharts',
-        link: '/echarts/default',
-        activeMatch: '^/echarts/'
-      },
-      {
-        text: 'CSS',
-        link: '/css/ch01',
-        activeMatch: '^/css/'
+        text: '文章',
+        link: '/doc/',
+        activeMatch: '^/doc/'
       },
     ],
 
     sidebar: {
       '/js/': getJsSidebar(),
-      '/echarts/': getEChartsSidebar(),
+      '/doc/': getDocSidebar(),
       '/css/': getCSSSidebar(),
       '/': getJsSidebar()
     }
@@ -74,13 +69,14 @@ function getJsSidebar() {
   ]
 }
 
-function getEChartsSidebar() {
+function getDocSidebar() {
   return [
     {
-      text: 'ECharts',
+      text: '文章',
       children: [
-        { text: '推荐配置', link: '/echarts/default' },
-        { text: '前端', link: '/echarts/FE' }
+        { text: '1', link: '/doc/' },
+        { text: '前端路线', link: '/doc/frontend-roadmap-ssh' },
+        { text: '前端大全', link: '/doc/all-of-frontend-yck' },
       ]
     },
   ]
