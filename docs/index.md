@@ -13,6 +13,6 @@ features:
     details: 高频考点
   - title: 高效
     details: 图文并茂
-footer: MIT Licensed | Copyright © jun.sh
+footer: MIT Licensed | Copyright © jun.run
 ---
 
