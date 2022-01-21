@@ -527,9 +527,9 @@ Virtual DOM 也就是虚拟节点。通过 JS 的 Object 对象模拟 DOM 中的
 - 文档
   - [React 官方文档](https://reactjs.org/docs/components-and-props.html)
 - 推荐文章
-  - [[译]React 函数组件和类组件的差异](https://jishuin.proginn.com/p/763bfbd4cad4)
+  - [函数式组件与类组件有何不同？](https://overreacted.io/zh-hans/how-are-function-components-different-from-classes/)
   - [寫 React Components 該注意的 6 個地方與技巧](https://medium.com/@chihsuan/%E5%AF%AB-react-components-%E8%A9%B2%E6%B3%A8%E6%84%8F%E7%9A%846%E5%80%8B%E5%9C%B0%E6%96%B9%E8%88%87%E6%8A%80%E5%B7%A7-faa2bb87a18e)
-  - [编写高效且可读组件的 5 个最佳实践](https://www.infoq.cn/article/ry4icky5crb1pokvi0ql)
+  - [编写高效且可读组件的 5 个最佳实践](https://www.infoq.cn/article/ry4icky5crb1pokvi0ql) [原文](https://levelup.gitconnected.com/refactoring-a-complex-react-component-5-best-practices-to-write-efficient-and-readable-components-b0d06f4f22b4)
   - [designing-react-components-best-practices](https://www.thisdot.co/blog/designing-react-components-best-practices)
   - [React 复合组件](https://www.smashingmagazine.com/2021/08/compound-components-react/)
 

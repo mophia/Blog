@@ -22,17 +22,14 @@ export default {
 
     nav: [
       { text: 'JavaScript', link: '/', activeMatch: '^/$|^/js/' },
-      {
-        text: '文章',
-        link: '/doc/',
-        activeMatch: '^/doc/'
-      },
+      { text: '文章', link: '/doc/', activeMatch: '^/doc/'},
+      { text: 'React', link: '/react/', activeMatch: '^/react/'},
     ],
 
     sidebar: {
       '/js/': getJsSidebar(),
       '/doc/': getDocSidebar(),
-      '/css/': getCSSSidebar(),
+      '/react/': getReactSidebar(),
       '/': getJsSidebar()
     }
   }
@@ -82,13 +79,12 @@ function getDocSidebar() {
   ]
 }
 
-function getCSSSidebar() {
+function getReactSidebar() {
   return [
     {
-      text: 'ECharts',
+      text: 'React 文献',
       children: [
-        { text: '推荐配置', link: '/echarts/default' },
-        { text: '前端', link: '/echarts/FE' }
+        { text: '重构复杂的 React 组件', link: '/react/refactor-component' },
       ]
     },
   ]
