@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: ./img/logo.jpg
+heroImage: /logo.jpg
 heroAlt: jun.run
 heroText: 奔跑吧，俊！
 tagline: —— 前端工程师的必备知识库
