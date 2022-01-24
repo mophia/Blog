@@ -71,9 +71,10 @@ function getDocSidebar() {
     {
       text: '文章',
       children: [
-        { text: '1', link: '/doc/' },
+        { text: '前端进阶之道', link: '/doc/' },
         { text: '前端路线', link: '/doc/frontend-roadmap-ssh' },
         { text: '前端大全', link: '/doc/all-of-frontend-yck' },
+        { text: 'React路线', link: '/doc/react-roadmap' },
       ]
     },
   ]

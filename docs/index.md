@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: ./logo.jpg
+heroImage: /logo.jpg
 heroAlt: jun.run
 heroText: 奔跑吧，俊！
 tagline: —— 前端工程师的必备知识库
@@ -13,6 +13,6 @@ features:
     details: 高频考点
   - title: 高效
     details: 图文并茂
-footer: MIT Licensed | Copyright © jun.sh
+footer: MIT Licensed | Copyright © jun.run
 ---
 
