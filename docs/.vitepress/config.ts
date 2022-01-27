@@ -45,6 +45,9 @@ function getJsSidebar() {
         { text: '原型和原型链', link: '/js/prototype' },
         { text: '闭包', link: '/js/closure' },
         { text: '变量', link: '/js/variable' },
+        { text: 'this', link: '/js/this' },
+        { text: '正则表达式', link: '/js/regex' },
+        { text: '其他', link: '/js/other' },
       ]
     },
     {

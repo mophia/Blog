@@ -1,324 +1,34 @@
-闭包
-===
-
-> Create by **jsliang** on **2020-09-26 16:19:33**  
-> Recently revised in **2020-11-04 10:46:07**
-
-本文讲述闭包及柯里化知识点。
-
-<!-- 目录开始 -->
-## <a name="chapter-one" id="chapter-one"></a>一 目录
-
-**不折腾的前端，和咸鱼有什么区别**
-
-| 目录 |
-| --- |
-| [一 目录](#chapter-one) |
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 闭包](#chapter-two) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 闭包好处和坏处](#chapter-three) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 柯里化](#chapter-four) |
-| &emsp;[4.1 柯里化举例](#chapter-four-one) |
-| &emsp;[4.2 柯里化好处](#chapter-four-two) |
-| &emsp;[4.3 题目：实现 add(1)(2)(3)](#chapter-four-three) |
-| &emsp;[4.4 题目：实现 compose(foo, bar, baz)('start')](#chapter-four-four) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 题目列表](#chapter-five) |
-| &emsp;[5.1 求打印结果 1](#chapter-five-one) |
-| &emsp;[5.2 求打印结果 2](#chapter-five-two) |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 参考文献](#chapter-six) |
-<!-- 目录结束 -->
-
-## <a name="chapter-two" id="chapter-two"></a>二 闭包
-
-在 JavaScript 中，根据词法作用域的规则，内部函数总是可以访问其外部函数中声明的变量。
-
-当通过调用一个外部函数返回一个内部函数后，即使该外部函数已经执行结束了，但是内部函数引用外部函数的变量依然保存在内存中，我们就把这些变量的集合称为闭包。
-
-简单来说：
-
-* **在函数 A 中还有函数 B，函数 B 调用了函数 A 中的变量，那么函数 B 就称为函数 A 的闭包。**
-
-举个例子：
+# 闭包 Closure
 
 ```js
 function foo() {
-  let num = 0;
-  return function() {
-    num++;
-    console.log(num);
-  };
-}
-const f = foo();
-f(); // 1
-f(); // 2
-```
-
-这个 `num` 在返回的函数中存在了，所以每次调用都会 + 1。
-
-## <a name="chapter-three" id="chapter-three"></a>三 闭包好处和坏处
-
-好处：
-
-1. 缓存。将变量隐藏起来不被 GC 回收。
-2. 实现柯里化。利用闭包特性完成柯里化。
-
-坏处：
-
-1. 内存消耗。闭包产生的变量无法被销毁。
-2. 性能问题。由于闭包内部变量优先级高于外部变量，所以需要多查找作用域链的一个层次，一定程度影响查找速度。
-
-## <a name="chapter-four" id="chapter-four"></a>四 柯里化
-
-柯里化（Currying）是把接受多个参数的函数转变为单一参数的函数，并且返回接受余下的参数且返回结果的新函数的技术。
-
-**简单来说**：
-
-1. 通过闭包管理
-2. 支持链式调用
-3. 每次运行返回一个 `function`
-
-即：通过将多个参数换成一个参数，每次运行返回新函数的技术
-
-### <a name="chapter-four-one" id="chapter-four-one"></a>4.1 柯里化举例
-  
-> 普通的 add 函数
-
-```js
-function add (a, b) {
-  return a + b;
-}
-add(1, 2);
-```
-
-> 柯里化函数
-
-```js
-function curryingAdd (x) {
-  return function(y) {
-    return x + y;
-  }
-}
-curryingAdd(x)(y);
-```
-
-哎，这样不是浪费程序员时间么？
-
-不急，我们继续往下面看。
-
-### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 柯里化好处
-  
-1. 参数复用
-2. 提前确认
-3. 延迟运行
-
-> 参数复用
-
-```js
-// 正则表达式
-
-// 校验数字
-let numberReg = /[0-9]+/g;
-
-// 校验小写字母
-let stringReg = /[a-z]+/g;
-
-// currying 后
-function curryingCheck(reg) {
-  return function(txt) {
-    return reg.test(txt);
-  }
-}
-
-// 校验数字
-let checkNumber = curryingCheck(numberReg);
-let checkString = curryingCheck(stringReg);
-
-// 使用
-console.log(checkNumber('13888888888')); // true
-console.log(checkString('jsliang')); // true
-```
-
-利用闭包实现柯里化。
-
-### <a name="chapter-four-three" id="chapter-four-three"></a>4.3 题目：实现 add(1)(2)(3)
-
-> [返回目录](#chapter-one)
-  
-```js
-// 实现一个 add 方法，使计算结果能够满足以下预期
-add(1)(2)(3) = 6;
-add(1, 2, 3)(4) = 10;
-add(1)(2)(3)(4)(5) = 15;
-```
-
-答：
-
-```js
-function add () {
-  const numberList = Array.from(arguments);
-
-  // 进一步收集剩余参数
-  const calculate = function() {
-    numberList.push(...arguments);
-    return calculate;
-  }
-
-  // 利用 toString 隐式转换，最后执行时进行转换
-  calculate.toString = function() {
-    return numberList.reduce((a, b) => a + b, 0);
-  }
-
-  return calculate;
-}
-
-// 实现一个 add 方法，使计算结果能够满足以下预期
-console.log(add(1)(2)(3)); // 6
-console.log(add(1, 2, 3)(4)); // 10;
-console.log(add(1)(2)(3)(4)(5)); // 15;
-```
-
-### <a name="chapter-four-four" id="chapter-four-four"></a>4.4 题目：实现 compose(foo, bar, baz)('start')
-
-> [返回目录](#chapter-one)
-
-```js
-function foo(...args) {
-  console.log(args[0]);
-  return 'foo';
-}
-function bar(...args) {
-  console.log(args[0]);
-  return 'bar';
-}
-function baz(...args) {
-  console.log(args[0]);
-  return 'baz';
-}
-
-function compose() {
-  // 闭包元素 - 函数列表
-  const list = Array.from(arguments);
-
-  // 闭包元素 - 函数列表执行位置
-  let index = -1;
-
-  // 闭包元素 - 上一个函数的返回
-  let prev = '';
-
-  // 返回闭包函数
-  const doNext = function() {
-    index++; // 索引值累加
-    // 一开始没有上一个元素时，获取第二个括号的值
-    if (!prev) {
-      prev = arguments[0];
-    }
-    // 设置前一个结果为当前函数返回
-    prev = list[index](prev);
-    // 递归调用
-    if (index < list.length - 1) {
-      doNext(index + 1);
-    }
-  };
-
-  // 第一次返回闭包函数
-  return doNext;
-}
-
-compose(foo, bar, baz)('start');
-```
-
-## <a name="chapter-five" id="chapter-five"></a>五 题目列表
-
-> [返回目录](#chapter-one)
-    
-### <a name="chapter-five-one" id="chapter-five-one"></a>5.1 求打印结果 1
-
-> [返回目录](#chapter-one)
-    
-```js
-function test() {
-  var n = 4399;
-
-  function add() {
-    n++;
+  var n = 1;
+  function innerFoo() {
+    n += 1;
     console.log(n);
   }
-
-  return {
-    n,
-    add
-  };
-};
-
-var result = test();
-var result2 = test();
-
-result.add(); // 输出啥
-result.add(); // 输出啥
-
-console.log(result.n); // 输出啥
-
-result2.add(); // 输出啥
-```
-
-选择：
-
-* A：4400 4401 4399 4400
-* B：4400 4401 4401 4402
-* C：4400 4400 4399 4400
-* D：4400 4401 4399 4402
-* E：4400 4401 4401 4400
-
----
-
-答案：A
-
-### <a name="chapter-five-two" id="chapter-five-two"></a>5.2 求打印结果 2
-
-> [返回目录](#chapter-one)
-  
-```js
-function Foo() {
-  var i = 0;
-  return function() {
-    console.log(i++);
-  }
+  return innerFoo;
 }
-
-var f1 = Foo();
-var f2 = Foo();
-
-f1();
-f1();
-f2();
+var func = foo();
+func(); // 产生闭包innerFoo()，变量n保存在内存中 func();
 ```
 
-请选择：
+## 闭包的作用
 
-* A：0 1 0
-* B：0 1 2
-* C：0 0 0
-* D：0 0 2
+1. 可以读取函数内部的变量
+2. 可以把变量始终保存在内存中
 
----
+## 闭包的写法
 
-答案：A
+1. 一个函数（即外部函数）里面包含另一个函数（即内部函数），并且 return 返回这个内部函数， 然后内部函数在定义内部函数之外的作用域被调用，这时的内部函数就是一个闭包了。
+2. 内部函数引用了外部函数的变量，这个变量不会被销毁，因为闭包需要这个变量， 所以通过闭包可以访问闭包保存的变量。
 
-原因：`f1` 每次执行会产生闭包，然后 `i++` 是先赋值后展示。
+## 闭包的缺点
 
-## <a name="chapter-six" id="chapter-six"></a>六 参考文献
+- 因为闭包的变量保存在内存中，内存泄漏，对内存的消耗很大，所以不要滥用闭包。
 
-> [返回目录](#chapter-one)
+## 闭包常用的地方
 
-* [x] [详解JS函数柯里化](https://www.jianshu.com/p/2975c25e4d71)【阅读建议：20min】
-* [x] [编写add函数 然后 add(1)(2)(3)(4) 输出10 再考虑拓展性](https://beta.segmentfault.com/q/1010000004342477/a-1020000004344356)【阅读建议：10min】
-* [x] [发现 JavaScript 中闭包的强大威力](https://juejin.im/post/6844903769646317576)【阅读建议：20min】
-* [x] [JavaScript闭包的底层运行机制](http://blog.leapoahead.com/2015/09/15/js-closure/)【阅读建议：20min】
-* [x] [我从来不理解JavaScript闭包，直到有人这样向我解释它](https://zhuanlan.zhihu.com/p/56490498)【阅读建议：10min】
-* [x] [发现 JavaScript 中闭包的强大威力](https://juejin.im/post/5c4e6a90e51d4552266576d2)【阅读建议：10min】
-* [x] [JavaScript闭包的底层运行机制](http://blog.leapoahead.com/2015/09/15/js-closure/)【阅读建议：20min】
-* [x] [我从来不理解JavaScript闭包，直到有人这样向我解释它...](https://zhuanlan.zhihu.com/p/56490498)【阅读建议：10min】
-* [x] [破解前端面试（80% 应聘者不及格系列）：从闭包说起](https://juejin.im/post/6844903474212143117)【阅读建议：10min】
-
----
-
-> jsliang 的文档库由 [梁峻荣](https://github.com/LiangJunrong) 采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。<br/>基于 [https://github.com/LiangJunrong/document-library](https://github.com/LiangJunrong/document-library) 上的作品创作。<br/>本许可协议授权之外的使用权限可以从 [https://creativecommons.org/licenses/by-nc-sa/2.5/cn/](https://creativecommons.org/licenses/by-nc-sa/2.5/cn/) 处获得。
+1. es5 for 循环事件监听
+2. 函数里使用了定时器
+3. 封装许多高级的功能集 减少闭包使用可以用立即执行函数传递变量
