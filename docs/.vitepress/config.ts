@@ -78,6 +78,7 @@ function getDocSidebar() {
         { text: '前端路线', link: '/doc/frontend-roadmap-ssh' },
         { text: '前端大全', link: '/doc/all-of-frontend-yck' },
         { text: 'React路线', link: '/doc/react-roadmap' },
+        { text: 'Mac 快捷键', link: '/doc/shortcuts-for-mac' },
       ]
     },
   ]
