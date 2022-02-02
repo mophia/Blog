@@ -4,7 +4,7 @@ export default {
   description: 'A running Jun',
 
   themeConfig: {
-    repo: 'sooia/vitepress',
+    repo: 'devull/blog',
     docsDir: 'docs',
     docsBranch: 'main',
 
@@ -24,12 +24,14 @@ export default {
       { text: 'JavaScript', link: '/', activeMatch: '^/$|^/js/' },
       { text: '文章', link: '/doc/', activeMatch: '^/doc/'},
       { text: 'React', link: '/react/', activeMatch: '^/react/'},
+      { text: 'Python', link: '/python/', activeMatch: '^/python/'},
     ],
 
     sidebar: {
       '/js/': getJsSidebar(),
       '/doc/': getDocSidebar(),
       '/react/': getReactSidebar(),
+      '/python/': getPythonSidebar(),
       '/': getJsSidebar()
     }
   }
@@ -90,6 +92,19 @@ function getReactSidebar() {
       text: 'React 文献',
       children: [
         { text: '重构复杂的 React 组件', link: '/react/refactor-component' },
+      ]
+    },
+  ]
+}
+
+function getPythonSidebar() {
+  return [
+    {
+      text: '数据结构',
+      children: [
+        { text: '列表', link: '/python/list' },
+        { text: '元组', link: '/python/tuple' },
+        { text: '字典', link: '/python/dict' },
       ]
     },
   ]
