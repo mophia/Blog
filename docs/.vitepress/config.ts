@@ -1,6 +1,6 @@
 export default {
   lang: 'zh-CN',
-  title: '奔跑吧，俊！',
+  title: '俊润',
   description: 'A running Jun',
 
   themeConfig: {
@@ -21,10 +21,11 @@ export default {
     // },
 
     nav: [
+      { text: 'Go', link: '/', activeMatch: '^/$|^/go/' },
+      { text: 'Python', link: '/python/', activeMatch: '^/python/'},
       { text: 'JavaScript', link: '/', activeMatch: '^/$|^/js/' },
       { text: '文章', link: '/doc/', activeMatch: '^/doc/'},
       { text: 'React', link: '/react/', activeMatch: '^/react/'},
-      { text: 'Python', link: '/python/', activeMatch: '^/python/'},
     ],
 
     sidebar: {
@@ -105,6 +106,7 @@ function getPythonSidebar() {
         { text: '列表', link: '/python/list' },
         { text: '元组', link: '/python/tuple' },
         { text: '字典', link: '/python/dict' },
+        { text: '装饰器', link: '/python/decorator' },
       ]
     },
   ]

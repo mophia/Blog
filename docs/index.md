@@ -2,10 +2,10 @@
 home: true
 heroImage: /logo.jpg
 heroAlt: jun.run
-heroText: 奔跑吧，俊！
-tagline: —— 前端工程师的必备知识库
+heroText: 俊润
+tagline: —— 偷着乐
 actionText: 开始
-actionLink: /js/
+actionLink: /doc/
 # features:
 #   - title: 简约
 #     details: 言简意赅

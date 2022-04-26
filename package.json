@@ -4,7 +4,7 @@
   "description": "jun.run",
   "main": "index.js",
   "repository": "git@github.com:Sooia/vitepress.git",
-  "author": "sooia",
+  "author": "jun",
   "license": "MIT",
   "devDependencies": {
     "vitepress": "^0.21.6"
