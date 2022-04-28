@@ -29,13 +29,24 @@ export default {
     ],
 
     sidebar: {
+      '/': getGoSidebar(),
       '/js/': getJsSidebar(),
       '/doc/': getDocSidebar(),
       '/react/': getReactSidebar(),
       '/python/': getPythonSidebar(),
-      '/': getJsSidebar()
     }
   }
+}
+
+function getGoSidebar() {
+  return [
+    {
+      text: 'go',
+      children: [
+        { text: '31-40', link: '/31-40' },
+      ]
+    },
+  ]
 }
 
 function getJsSidebar() {

@@ -3,9 +3,9 @@ home: true
 heroImage: /logo.jpg
 heroAlt: jun.run
 heroText: 俊润
-tagline: —— 偷着乐
+tagline:     —— 偷着乐
 actionText: 开始
-actionLink: /doc/
+actionLink: /go/31-40
 # features:
 #   - title: 简约
 #     details: 言简意赅
